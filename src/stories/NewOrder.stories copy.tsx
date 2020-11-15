@@ -11,8 +11,8 @@ export default {
   component: CustomerChooser,
 } as Meta;
 
-const Template: Story = (args) => <CustomerChooserWrapper {...args} />;
-function CustomerChooserWrapper() {
+const Template: Story = (args) => <NewOrderWrapper {...args} />;
+function NewOrderWrapper() {
   const customers: CustomerDto[] = [
     { id: 1, name: "adam" },
     { id: 2, name: "barry" },
@@ -21,7 +21,7 @@ function CustomerChooserWrapper() {
     { id: 5, name: "elphante" },
   ];
 
-  const [selected, setSelected] = useState<CustomerDto | null>(null);
+  const [order, setOrder] = useState<OrderDto | null>(null);
   return (
     <CustomerChooser
       selected={selected}

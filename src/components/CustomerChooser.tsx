@@ -1,13 +1,12 @@
 import { TextField } from "@material-ui/core";
 import * as React from "react";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { ProductDto } from "../models/ProductDto";
+import { Dispatch, SetStateAction } from "react";
 import { CustomerDto } from "../models/CustomerDto";
 import Autocomplete from "@material-ui/lab/Autocomplete/Autocomplete";
 
 export interface CustomerChooserProps {
   customers: Array<CustomerDto>;
-  selected?: CustomerDto;
+  selected?: CustomerDto | null;
   setSelected: Dispatch<SetStateAction<CustomerDto | null>>;
 }
 
