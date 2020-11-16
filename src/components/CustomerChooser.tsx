@@ -7,7 +7,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete/Autocomplete";
 export interface CustomerChooserProps {
   customers: Array<CustomerDto>;
   selected?: CustomerDto | null;
-  setSelected: Dispatch<SetStateAction<CustomerDto | null>>;
+  setSelected: (customer: CustomerDto | null) => void;
 }
 
 export const CustomerChooser = ({

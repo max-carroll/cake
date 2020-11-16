@@ -1,26 +1,33 @@
 import * as React from "react";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { CustomerDto } from "../models/CustomerDto";
+import { OrderDto } from "../models/OrderDto";
 import { ProductDto } from "../models/ProductDto";
-
-interface OrderDto {}
-
-interface CustomerDto {}
+import { CustomerChooser } from "./CustomerChooser";
 
 export interface OrderProps {
-  order: OrderDto;
-  setOrder: Dispatch<SetStateAction<OrderDto>>;
-  products?: Array<ProductDto>;
-  customer?: Array<CustomerDto>;
+  order: OrderDto | null;
+  setOrder: Dispatch<SetStateAction<OrderDto | null>>;
+  products: Array<ProductDto>;
+  customers: Array<CustomerDto>;
 }
 
-export const NewOrder = ({ order, setOrder }: OrderProps) => {
-  const handleChange = (name: string) => (
-    event: ChangeEvent<HTMLTextAreaElement>
-  ) =>
-    setOrder((old) => ({
-      ...old,
-      [name]: event.target.value,
-    }));
+export const NewOrder = ({
+  order,
+  setOrder,
+  customers,
+  products,
+}: OrderProps): JSX.Element => {
+  const handleSelectCustomer = (customer: CustomerDto | null) => {
+    if (customer != null) setOrder((old) => ({ ...old!, customer }));
+  };
 
-  return <></>;
+  return (
+    <>
+      <CustomerChooser
+        customers={customers}
+        setSelected={handleSelectCustomer}
+      ></CustomerChooser>
+    </>
+  );
 };

@@ -3,12 +3,13 @@
 import React, { useState } from "react";
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from "@storybook/react/types-6-0";
-import { CustomerChooser } from "../components/CustomerChooser";
 import { CustomerDto } from "../models/CustomerDto";
+import { OrderDto } from "../models/OrderDto";
+import { NewOrder } from "../components/NewOrder";
 
 export default {
-  title: "Example/CustomerChooser",
-  component: CustomerChooser,
+  title: "Example/OrderChooser",
+  component: NewOrder,
 } as Meta;
 
 const Template: Story = (args) => <NewOrderWrapper {...args} />;
@@ -23,11 +24,12 @@ function NewOrderWrapper() {
 
   const [order, setOrder] = useState<OrderDto | null>(null);
   return (
-    <CustomerChooser
-      selected={selected}
-      setSelected={setSelected}
+    <NewOrder
+      order={order}
+      setOrder={setOrder}
       customers={customers}
-    ></CustomerChooser>
+      products={[]}
+    ></NewOrder>
   );
 }
 
