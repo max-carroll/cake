@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Story, Meta } from "@storybook/react/types-6-0";
 import { CustomerChooser } from "../components/CustomerChooser";
 import { CustomerDto } from "../models/CustomerDto";
+import { customers } from "./data";
 
 export default {
   title: "Example/CustomerChooser",
@@ -13,14 +14,6 @@ export default {
 
 const Template: Story = (args) => <CustomerChooserWrapper {...args} />;
 function CustomerChooserWrapper() {
-  const customers: CustomerDto[] = [
-    { id: 1, name: "adam" },
-    { id: 2, name: "barry" },
-    { id: 3, name: "cherry" },
-    { id: 4, name: "dingo" },
-    { id: 5, name: "elphante" },
-  ];
-
   const [selected, setSelected] = useState<CustomerDto | null>(null);
   return (
     <CustomerChooser

@@ -2,23 +2,24 @@ import { TextField } from "@material-ui/core";
 import * as React from "react";
 import { CustomerDto } from "../models/CustomerDto";
 import Autocomplete from "@material-ui/lab/Autocomplete/Autocomplete";
+import { ProductDto } from "../models/ProductDto";
 
-export interface CustomerChooserProps {
-  customers: Array<CustomerDto>;
-  selected?: CustomerDto | null;
-  setSelected: (customer: CustomerDto | null) => void;
+export interface ProductChooserProps {
+  products: Array<ProductDto>;
+  selected?: ProductDto | null;
+  setSelected: (product: ProductDto | null) => void;
 }
 
-export const CustomerChooser = ({
-  customers,
+export const ProductChooser = ({
+  products,
   selected,
   setSelected,
-}: CustomerChooserProps) => {
+}: ProductChooserProps) => {
   return (
     <>
       <Autocomplete
         id="combo-box-demo"
-        options={customers}
+        options={products}
         getOptionLabel={(option) => option.name}
         style={{ width: 300 }}
         value={selected}
