@@ -1,4 +1,4 @@
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import * as React from "react";
 import { CustomerDto } from "../models/CustomerDto";
 import Autocomplete from "@material-ui/lab/Autocomplete/Autocomplete";
@@ -7,7 +7,7 @@ import { ProductDto } from "../models/ProductDto";
 export interface ProductChooserProps {
   products: Array<ProductDto>;
   selected?: ProductDto | null;
-  setSelected: (product: ProductDto | null) => void;
+  setSelected: (product: ProductDto | null, quantity: number) => void;
 }
 
 export const ProductChooser = ({
@@ -15,6 +15,9 @@ export const ProductChooser = ({
   selected,
   setSelected,
 }: ProductChooserProps) => {
+  const [product, setProduct] = React.useState<ProductDto | null>(null);
+  const [qty, setQty] = React.useState<number>(1);
+
   return (
     <>
       <Autocomplete
@@ -24,10 +27,15 @@ export const ProductChooser = ({
         style={{ width: 300 }}
         value={selected}
         renderInput={(params) => (
-          <TextField {...params} label="Select Customer" variant="outlined" />
+          <TextField {...params} label="Select Product" variant="outlined" />
         )}
-        onChange={(e, v) => setSelected(v)}
+        onChange={(e, v) => setProduct(v)}
       />
+      <TextField
+        value={qty}
+        onChange={(e: any) => setQty(parseInt(e.target.value))}
+      ></TextField>
+      <Button onClick={() => setSelected(product, qty)}>Add </Button>
     </>
   );
 };

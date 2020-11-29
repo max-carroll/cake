@@ -1,13 +1,8 @@
 import { CustomerDto } from "./CustomerDto";
-import { ProductDto } from "./ProductDto";
-
-export interface OrderItem {
-  id: number;
-  product?: ProductDto;
-  quantity: number;
-}
+import { OrderItem } from "./OrderItem";
 
 export interface OrderDto {
   id: number;
   customer: CustomerDto;
+  lineItems: Array<OrderItem>;
 }
