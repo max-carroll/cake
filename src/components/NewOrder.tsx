@@ -2,7 +2,7 @@ import * as React from "react";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { CustomerDto } from "../models/CustomerDto";
 import { OrderDto } from "../models/OrderDto";
-import { OrderItem } from "../models/OrderItem";
+import { LineItemDto } from "../models/OrderItem";
 import { ProductDto } from "../models/ProductDto";
 import { CustomerChooser } from "./CustomerChooser";
 import { ProductChooser } from "./ProductChooser";
@@ -24,13 +24,13 @@ export const NewOrder = ({
     if (customer != null) setOrder((old) => ({ ...old!, customer }));
   };
 
-  const handleAddProduct = (product: ProductDto | null) => {
+  const handleAddProduct = (product: ProductDto | null, quantity: number) => {
     if (!product) return;
 
-    var item: OrderItem = {
+    var item: LineItemDto = {
       id: 0,
       product,
-      quantity: 1,
+      quantity,
     };
 
     setOrder((old) => ({
@@ -51,8 +51,27 @@ export const NewOrder = ({
       ></ProductChooser>
 
       {order?.lineItems?.map((li) => (
-        <li>{li}</li>
+        <li>
+          <LineItem lineItem={li} />
+        </li>
       ))}
+    </>
+  );
+};
+
+interface LineItemProps {
+  lineItem: LineItemDto;
+}
+
+export const LineItem = ({ lineItem }: LineItemProps) => {
+  const name = lineItem?.product?.name;
+  const qty = lineItem.quantity;
+
+  return (
+    <>
+      <div>
+        {name} - {qty}
+      </div>
     </>
   );
 };

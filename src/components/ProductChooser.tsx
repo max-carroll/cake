@@ -16,7 +16,22 @@ export const ProductChooser = ({
   setSelected,
 }: ProductChooserProps) => {
   const [product, setProduct] = React.useState<ProductDto | null>(null);
-  const [qty, setQty] = React.useState<number>(1);
+  const [qty, setQty] = React.useState<string>("1");
+
+  function handleChangeQty(e: any) {
+    var number = parseInt(e.target.value);
+    setQty(e.target.value);
+  }
+
+  function handleAdd() {
+    var number = parseInt(qty);
+
+    if (Number.isNaN(number)) return;
+
+    if (number < 1) return;
+
+    setSelected(product, number);
+  }
 
   return (
     <>
@@ -33,7 +48,8 @@ export const ProductChooser = ({
       />
       <TextField
         value={qty}
-        onChange={(e: any) => setQty(parseInt(e.target.value))}
+        type="number"
+        onChange={handleChangeQty}
       ></TextField>
       <Button onClick={() => setSelected(product, qty)}>Add </Button>
     </>
