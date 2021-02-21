@@ -11,16 +11,19 @@ export const customers: CustomerDto[] = [
   
   export const products: ProductDto[] = [
     {
+      id: 1,
       name: "apples",
       productionCost: 100,
       salePrice: 200,
     },
     {
+      id: 2,
       name: "bananas",
       productionCost: 300,
       salePrice: 450,
     },
     {
+      id: 3,
       name: "cherries",
       productionCost: 625,
       salePrice: 730,

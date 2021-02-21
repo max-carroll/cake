@@ -48,10 +48,12 @@ export const ProductChooser = ({
       />
       <TextField
         value={qty}
+        label="Quanitity"
         type="number"
+        variant="outlined"
         onChange={handleChangeQty}
       ></TextField>
-      <Button onClick={() => setSelected(product, qty)}>Add </Button>
+      <Button onClick={handleAdd}>Add </Button>
     </>
   );
 };

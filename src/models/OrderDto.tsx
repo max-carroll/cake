@@ -1,8 +1,8 @@
 import { CustomerDto } from "./CustomerDto";
-import { OrderItem } from "./OrderItem";
+import { LineItemDto } from "./OrderItem";
 
 export interface OrderDto {
   id: number;
   customer: CustomerDto;
-  lineItems: Array<OrderItem>;
+  lineItems: Array<LineItemDto>;
 }

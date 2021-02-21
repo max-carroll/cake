@@ -1,5 +1,6 @@
 export interface ProductDto {
-    name: string;
-    productionCost: number;
-    salePrice: number;
+  id: number;
+  name: string;
+  productionCost: number;
+  salePrice: number;
 }
