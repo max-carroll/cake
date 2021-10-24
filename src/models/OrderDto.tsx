@@ -5,4 +5,5 @@ export interface OrderDto {
   id: number;
   customer: CustomerDto;
   lineItems: Array<LineItemDto>;
+  dueDate: any;
 }

@@ -1,5 +1,6 @@
+import { TextField } from "@material-ui/core";
 import * as React from "react";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { CustomerDto } from "../models/CustomerDto";
 import { OrderDto } from "../models/OrderDto";
 import { LineItemDto } from "../models/OrderItem";
@@ -12,6 +13,21 @@ export interface OrderProps {
   setOrder: Dispatch<SetStateAction<OrderDto | null>>;
   products: Array<ProductDto>;
   customers: Array<CustomerDto>;
+}
+
+function DateTimePicker(value: any, onChange: any): JSX.Element {
+  return (
+    <TextField
+      id="datetime-local"
+      label="Date appointment"
+      type="datetime-local"
+      value={value}
+      variant="outlined"
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
+  );
 }
 
 export const NewOrder = ({
@@ -31,7 +47,7 @@ export const NewOrder = ({
       (li) => li!.product!.id === product.id
     );
     if (existingItem) {
-      existingItem.quantity += quantity;
+      existingItem.quantity = quantity;
 
       var newLineItems =
         order?.lineItems.filter((li) =>
@@ -58,6 +74,14 @@ export const NewOrder = ({
     }
   };
 
+  const handleSetDueDate = (thing: any) => {
+    console.log(thing);
+    setOrder((old) => ({
+      ...old!,
+      dueDate: thing,
+    }));
+  };
+
   return (
     <>
       <CustomerChooser
@@ -68,6 +92,7 @@ export const NewOrder = ({
         products={products}
         setSelected={handleAddProduct}
       ></ProductChooser>
+      <DateTimePicker value={order?.dueDate} onChange={handleSetDueDate} />
 
       {order?.lineItems?.map((li) => (
         <li>

@@ -1,6 +1,5 @@
 import { Button, TextField } from "@material-ui/core";
 import * as React from "react";
-import { CustomerDto } from "../models/CustomerDto";
 import Autocomplete from "@material-ui/lab/Autocomplete/Autocomplete";
 import { ProductDto } from "../models/ProductDto";
 
@@ -19,7 +18,7 @@ export const ProductChooser = ({
   const [qty, setQty] = React.useState<string>("1");
 
   function handleChangeQty(e: any) {
-    var number = parseInt(e.target.value);
+    //var number = parseInt(e.target.value);
     setQty(e.target.value);
   }
 
